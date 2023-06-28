@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package restaurant;
+
+service RestaurantService {
+  rpc GetRestaurant(GetRestaurantRequest) returns (GetRestaurantResponse);
+  rpc GetRestaurants(GetRestaurantsRequest) returns (GetRestaurantsResponse);
+  rpc CreateRestaurant(CreateRestaurantRequest) returns (CreateRestaurantResponse);
+  // rpc UpdateRestaurant(UpdateRestaurantRequest) returns (UpdateRestaurantResponse);
+  rpc DeleteRestaurant(DeleteRestaurantRequest) returns (DeleteRestaurantResponse);
+}
+
+message GetRestaurantsRequest {}
+
+message GetRestaurantsResponse {
+  repeated GetRestaurantResponse restaurants = 1;
+}
+
+message GetRestaurantRequest {
+  string id = 1;
+}
+
+message GetRestaurantResponse {
+  string id = 1;
+  string name = 2;
+  string address = 3;
+  string email = 4;
+  string phone = 5;
+  string created_at = 6;
+  string updated_at = 7;
+}
+
+message CreateRestaurantRequest {
+  string name = 1;
+  string address = 2;
+  string email = 3;
+  string phone = 4;
+}
+
+message CreateRestaurantResponse {
+  GetRestaurantResponse restaurant = 1;
+}
+
+message DeleteRestaurantRequest {
+  string id = 1;
+}
+
+message DeleteRestaurantResponse {}
+
+message UpdateRestaurantRequest {
+  optional string name = 1;
+  optional string address = 2;
+  optional string email = 3;
+  optional string phone = 4;
+}
+
+message UpdateRestaurantResponse {
+  GetRestaurantResponse restaurant = 1;
+}
